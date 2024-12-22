@@ -1,6 +1,6 @@
 # source: 
-# https://www.researchgate.net/publication/357185624_Crosswind_integrated_concentration_for_various_dispersion_parameter_systems
-# https://www.tandfonline.com/doi/abs/10.13182/NT77-A31828
+# https://www.researchgate.net/publication/357185624_Crosswind_integrated_concentration_for_various_dispersion_parameter_systems - table 3
+# https://www.tandfonline.com/doi/abs/10.13182/NT77-A31828 - table II
 
 stability_classes = {
     "A": {
