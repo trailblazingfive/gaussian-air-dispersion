@@ -1,12 +1,12 @@
-# source: https://www.researchgate.net/publication/357185624_Crosswind_integrated_concentration_for_various_dispersion_parameter_systems
+# source: 
 
 stability_classes = {
     "A": {
         "description": "Very Unstable",
-        "a1": 0.22,
-        "a2": 0.90,
-        "b1": 0.20,
-        "b2": 1.00,
+        "a": 0.22,
+        "b": 0.90,
+        "c": 0.20,
+        "d": 1.00,
         "conditions": "Strong solar radiation, clear skies, light winds",
         "examples": "Summer afternoons with strong sunlight and low wind speed"
     },
