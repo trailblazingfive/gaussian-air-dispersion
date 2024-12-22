@@ -2,23 +2,19 @@ import numpy as np
 import matplotlib.pyplot as plt
 from utils.gaussian_plum_equations import Point, concentration_of_emission
 
-# Define the initial data (example values)
 initial_data = {
-    "emission": 1000,  # Example emission value (Q)
-    "height": 50,      # Example height of the stack (H)
-    "wind_speed": 5,   # Example wind speed (u)
+    "emission": 1,  # Example emission value (Q) [g/s]
+    "height": 1,      # Example height of the stack (H) [m]
+    "wind_speed": 5,   # Example wind speed (u) [m/s]
     "stability_class": "A"  # Example stability class (SC)
 }
 
-# Generate grid of x, y values for the slice at z = 60
-x_vals = np.arange(0.01, 101, 1)  # x from 0 to 100
-y_vals = np.arange(-50, 51, 1)  # y from -50 to 50
-z_val = 60  # Fixed z value (height)
+x_vals = np.arange(0.01, 101, 1)
+y_vals = np.arange(-50, 51, 1)
+z_val = 10  # Fixed z value (height)
 
-# Create meshgrid for x, y
 X, Y = np.meshgrid(x_vals, y_vals)
 
-# Compute concentrations for each (x, y, z=60) point
 concentration = np.zeros(X.shape)
 
 for i in range(X.shape[0]):
@@ -29,8 +25,8 @@ for i in range(X.shape[0]):
 # Plotting as a 2D heatmap
 plt.figure(figsize=(10, 8))
 plt.contourf(X, Y, concentration, cmap='jet', levels=100)  # Contour plot for a smooth gradient
-plt.colorbar(label='Concentration')  # Color bar to show concentration levels
-plt.xlabel('X')
-plt.ylabel('Y')
-plt.title(f"Concentration of Emission at Z = {z_val}")
+plt.colorbar(label=r'Concentration C [g/m$^3$]') 
+plt.xlabel('x [m]')
+plt.ylabel('y [m]')
+plt.title(f"Concentration of emission at Z = {z_val}m")
 plt.show()
