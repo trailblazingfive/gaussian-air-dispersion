@@ -1,5 +1,8 @@
 from stability_classes import stability_classes
 import numpy as np
+from collections import namedtuple
+
+Point = namedtuple("Point", ["x", "y", "z"])
 
 ROUND_VALUE = True
 ROUNDING_DIGITS = 4
@@ -26,8 +29,22 @@ def sigma_z(x, stability_class):
         return np.round(sigma, ROUNDING_DIGITS)
     else:
         return sigma
+    
 
-for i in np.arange(0.1, 10, 0.1):  # Start at 0.1 to avoid log(0)
-    sigma_y_value = sigma_y(i, "A")
-    sigma_z_value = sigma_z(i, "A")
-    print(f"sy={sigma_y_value}, sz={sigma_z_value}")
+def concentration_of_emission(initial_data, point):
+    x, y, z = point
+    Q = initial_data["emission"]
+    H = initial_data["height"]
+    u = initial_data["wind_speed"]
+    SC = initial_data["stability_class"]
+
+    mass_part = np.float64(Q/(2*np.pi*sigma_y(x,SC)*sigma_z(x,SC)))
+
+    ortogonal_part = np.float64(np.exp(-np.pow(y,2)/(2*np.pow(sigma_y(x,SC),2))))
+
+    height_part = np.float64(np.exp(-(np.pow(z-H,2)/(2*np.pow(sigma_y(x,SC),2))))+np.exp(-(np.pow(z+H,2)/(2*np.pow(sigma_y(x,SC),2)))))
+
+    concentration = mass_part * ortogonal_part * height_part
+    return concentration_of_emission
+
+
