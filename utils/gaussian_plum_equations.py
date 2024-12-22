@@ -1,5 +1,6 @@
-from stability_classes import stability_classes
 import numpy as np
+import matplotlib.pyplot as plt
+from stability_classes import stability_classes
 from collections import namedtuple
 
 Point = namedtuple("Point", ["x", "y", "z"])
@@ -30,6 +31,8 @@ def sigma_z(x, stability_class):
     else:
         return sigma
     
+# source:
+# https://www.tandfonline.com/doi/abs/10.13182/NT77-A31828 - equation 1
 
 def concentration_of_emission(initial_data, point):
     x, y, z = point
@@ -40,11 +43,9 @@ def concentration_of_emission(initial_data, point):
 
     mass_part = np.float64(Q/(2*np.pi*sigma_y(x,SC)*sigma_z(x,SC)))
 
-    ortogonal_part = np.float64(np.exp(-np.pow(y,2)/(2*np.pow(sigma_y(x,SC),2))))
+    orthogonal_part = np.float64(np.exp(-np.pow(y,2)/(2*np.pow(sigma_y(x,SC),2))))
 
     height_part = np.float64(np.exp(-(np.pow(z-H,2)/(2*np.pow(sigma_y(x,SC),2))))+np.exp(-(np.pow(z+H,2)/(2*np.pow(sigma_y(x,SC),2)))))
 
-    concentration = mass_part * ortogonal_part * height_part
-    return concentration_of_emission
-
-
+    concentration = mass_part * orthogonal_part * height_part
+    return concentration
