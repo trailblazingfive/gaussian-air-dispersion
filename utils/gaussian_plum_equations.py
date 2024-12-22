@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from stability_classes import stability_classes
+from utils.stability_classes import stability_classes
 from collections import namedtuple
 
 Point = namedtuple("Point", ["x", "y", "z"])
