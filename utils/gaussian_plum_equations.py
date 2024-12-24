@@ -41,7 +41,7 @@ def concentration_of_emission(initial_data, point):
     u = initial_data["wind_speed"]
     SC = initial_data["stability_class"]
 
-    mass_part = np.float64(Q/(2*np.pi*sigma_y(x,SC)*sigma_z(x,SC)))
+    mass_part = np.float64(Q/(2*np.pi*sigma_y(x,SC)*sigma_z(x,SC)*u))
 
     orthogonal_part = np.float64(np.exp(-np.pow(y,2)/(2*np.pow(sigma_y(x,SC),2))))
 
